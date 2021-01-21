@@ -3,8 +3,8 @@ import fs from 'fs';
 const ACCEPTABLE_FILE_EXT = [".html", ".md", "LICENSE", ".txt", "LICENCE", "LISENSE"];
 
 function walk(dir) {
-  const matches = [];
-  console.log({dir});
+  let matches = [];
+  // console.log({dir});
   let list = fs.readdirSync(dir);
   let file;
 
@@ -14,7 +14,7 @@ function walk(dir) {
     if (stat && stat.isDirectory()) {
       /* Recurse into a subdirectory */
       matches = matches.concat(walk(file));
-    } else {
+    } else if (ACCEPTABLE_FILE_EXT.some(ext => file.endsWith(ext))) {
       /* Is a file */
       matches.push(file);
     }
@@ -28,4 +28,4 @@ if (process.argv.length < 3) {
   process.exit(1);
 }
 
-walk(process.argv[2]);
+console.log(walk(process.argv[2]));

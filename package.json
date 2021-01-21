@@ -1,0 +1,20 @@
+{
+  "name": "copyright-incrementor",
+  "version": "1.0.0",
+  "description": "lul",
+  "main": "local_file_finder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RevolutionizeDev/Copyright-Incrementor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RevolutionizeDev/Copyright-Incrementor/issues"
+  },
+  "homepage": "https://github.com/RevolutionizeDev/Copyright-Incrementor#readme",
+  "type": "module"
+}

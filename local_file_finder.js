@@ -28,4 +28,22 @@ if (process.argv.length < 3) {
   process.exit(1);
 }
 
-console.log(walk(process.argv[2]));
+
+function updateOutdatedFiles(files) {
+  // spit out list of files with old copyright notices
+  for (let i = 0; i < files.length; i++) {
+    const fileName = files[i];
+    const body = fs.readFileSync(fileName).toString();
+    // TODO: Make this check more sophisticated
+    const newBody = body.replace(/copyright 2020/gi, "Copyright 2021");
+
+    if (body === newBody) {
+      continue;
+    }
+
+    // const newBody = body.replace("Copyright 2020", "Copyright 2021");
+    fs.writeFileSync(fileName, newBody, {mode: 0o644});
+  }
+}
+
+updateOutdatedFiles(walk(process.argv[2]));

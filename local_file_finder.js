@@ -4,11 +4,12 @@ const ACCEPTABLE_FILE_EXT = [".html", ".md", "LICENSE", ".txt", "LICENCE", "LISE
 
 function walk(dir) {
   const matches = [];
-  // lowercase file types
-  // return an array of matching file names
+  console.log({dir});
   let list = fs.readdirSync(dir);
-  list.forEach(function (file) {
-    file = dir + "/" + file;
+  let file;
+
+  for (let i = 0; i < list.length; i++) {
+    file = dir + "/" + list[i];
     let stat = fs.statSync(file);
     if (stat && stat.isDirectory()) {
       /* Recurse into a subdirectory */
@@ -17,28 +18,14 @@ function walk(dir) {
       /* Is a file */
       matches.push(file);
     }
-  });
+  }
 
-  
   return matches;
 }
 
-
-if (process.argv.length === 0) {
+if (process.argv.length < 3) {
   console.log("Give me a file path, mother fucker. This is RevDev, not Google. #spluckfree");
   process.exit(1);
 }
 
-
-walk(process.argv[1]);
-
-/*
-input: 
-output: 
-rules: 
-  - 
-Explicit requirements:
-  -
-Implicit requirements:
-  - 
-*/
+walk(process.argv[2]);
